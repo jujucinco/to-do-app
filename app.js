@@ -1,45 +1,62 @@
-window.onload = function() {
-    alert("The window has loaded!");
-    onReady();
-};
 
-function onReady() {
+function onReady(){
     const addToDoForm = document.getElementById('addToDoForm');
-    const newToDoText = document.getElementById('newToDoText');
-    const toDoList = document.getElementById('toDoList');
+    let toDos = [];
+    let id = 0;
 
-    addToDoForm.addEventListener('submit', (event) => {
-        event.preventDefault();
+    function renderTheUI(){
 
-        let title = newToDoText.value;
+        const toDoList = document.getElementById('toDoList');
+        TODO_LIST.textContent = '';
 
-        let newLi = document.createElement('li');
+        toDos.forEach(function(toDo){
+            const NEW_LI = document.createElement('li');
+            const CHECKBOX = document.createElement('input');
+            CHECKBOX.type = 'checkbox';
 
-        let checkbox = document.createElement('input');
+            const DELETE_BTN = document.createElement('button');
+            DELETE_BTN.textContent = 'Delete!';
 
-        checkbox.type = "checkbox";
+            DELETE_BTN.addEventListener('click, event => {
+                toDos = toDos.filter(function(item){
+                    return item.id !== toDo.id;
+            })
+            renderTheUI();
+            
+            });
 
-        let deleteBtn = document.createElement('button');
+            NEW_LI.textContent = toDo.title;
 
-        deleteBtn.textContent = "Delete";
-
-        deleteBtn.addEventListener('click', function(event){
-
-          toDoList.removeChild(this.parentElement);
+            TODO_LIST.appendChild(NEW_LI);
+            NEW_LI.appendChild(CHECKBOX);
+            NEW_LI.appendChild(DELETE_BTN);
+            
         })
+    }
 
-        
-        newLi.textContent = title;
-
-        newLi.appendChild(checkbox);
-
-        newLi.appendChild(deleteBtn);
-
-        toDoList.appendChild(newLi);
-
-        newToDoText.value = '';
-
-        
+    function createNewToDo(){
+    const NEW_TODO_TEXT = document.getElementById('newToDoText');
+    if(!NEW_TODO_TEXT.value){return; }
+    toDos.push({
+        title: NEW_TODO_TEXT.value,
+        complete: false,
+        id: id
     });
 
+    id++;
+
+    NEW_TODO_TEXT.value= '';
+    renderTheUI()
+    }
+
+    ADD_TODO_FORM.addEventListener('submit', event => {
+        event.preventDefault();
+        createNewToDo();
+
+        renderTheUI();
+    })
 }
+
+    window.onload = function() {
+        onReady();
+    };
