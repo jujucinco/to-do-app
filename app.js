@@ -28,11 +28,12 @@ function onReady() {
           toDoList.removeChild(this.parentElement);
         })
 
-        newLi.appendChild(deleteBtn);
-
+        
         newLi.textContent = title;
 
         newLi.appendChild(checkbox);
+
+        newLi.appendChild(deleteBtn);
 
         toDoList.appendChild(newLi);
 
@@ -42,4 +43,3 @@ function onReady() {
     });
 
 }
-
