@@ -21,9 +21,11 @@ function onReady(){
                 toDos = toDos.filter(function(item){
                     return item.id !== toDo.id;
             })
+
+        })
             renderTheUI();
 
-            });
+            
 
             NEW_LI.textContent = toDo.title;
 
@@ -52,9 +54,9 @@ function onReady(){
     ADD_TODO_FORM.addEventListener('submit', event => {
         event.preventDefault();
         createNewToDo();
-
+    });
         renderTheUI();
-    })
+    
 }
 
     window.onload = function() {
