@@ -17,12 +17,12 @@ function onReady(){
             const DELETE_BTN = document.createElement('button');
             DELETE_BTN.textContent = 'Delete!';
 
-            DELETE_BTN.addEventListener('click, event => {
+            DELETE_BTN.addEventListener('click', event => {
                 toDos = toDos.filter(function(item){
                     return item.id !== toDo.id;
             })
             renderTheUI();
-            
+
             });
 
             NEW_LI.textContent = toDo.title;
