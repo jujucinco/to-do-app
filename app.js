@@ -1,6 +1,6 @@
 
 function onReady(){
-    const addToDoForm = document.getElementById('ADD_TODO_FORM');
+    const ADD_TODO_FORM = document.getElementById('AddToDoForm');
     let toDos = [];
     let id = 0;
 
